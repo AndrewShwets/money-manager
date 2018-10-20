@@ -1,0 +1,13 @@
+@import "style/variables.scss";
+
+@mixin Tablet() {
+  @media screen and (max-width: $tabletWidth) {
+    @content
+  }
+}
+
+@mixin Desktop() {
+  @media screen and (max-width: $desktopWidth) {
+    @content
+  }
+}
