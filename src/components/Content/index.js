@@ -1,11 +1,16 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+
 import Container from 'components/Markup/Container';
+import ROUTES from 'routes';
 
 import './index.scss';
 
 const Content = () => (
     <Container className="app__content">
-        <div>Content</div>
+        {Object.keys(ROUTES).map((key) => (
+            <Route {...ROUTES[key]} key={key} />
+        ))}
     </Container>
 );
 
