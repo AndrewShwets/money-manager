@@ -1,6 +1,8 @@
-$nav: #3ec72b;
+@import "style/index.scss";
+
+$sum: ceil($headerHeight + $footerHeight)!default;
 
 .app__content {
-  background: $nav;
-  height: 30px;
+  height: calc(100vh - #{$sum});
+  overflow-y: auto;
 }

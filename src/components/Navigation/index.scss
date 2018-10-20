@@ -1,6 +1,6 @@
-$nav: #111;
+@import "style/index.scss";
 
 .app__navigation {
-  background: $nav;
-  height: 30px;
+  height: $headerHeight;
+  @include borderBottom();
 }

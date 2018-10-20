@@ -1,6 +1,11 @@
-$nav: #a25dc7;
+@import "style/index.scss";
 
 .app__footer {
-  background: $nav;
-  height: 30px;
+  height: $footerHeight;
+  @include borderTop();
+}
+
+.app__footer-content {
+  padding: 10px;
+  box-sizing: border-box;
 }

@@ -1,0 +1,9 @@
+@import "style/variables.scss";
+
+@mixin borderTop($color: $primary, $width: 1px) {
+  border-top: $width solid $color;
+}
+
+@mixin borderBottom($color: $primary, $width: 1px) {
+  border-bottom: $width solid $color;
+}

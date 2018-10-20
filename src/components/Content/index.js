@@ -5,7 +5,7 @@ import './index.scss';
 
 const Content = () => (
     <Container className="app__content">
-        Content
+        <div>Content</div>
     </Container>
 );
 
