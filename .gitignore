@@ -10,7 +10,7 @@
 /build
 
 # webstorm configs2
-.idea/
+.idea
 
 # misc
 .DS_Store

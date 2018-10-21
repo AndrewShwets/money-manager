@@ -7,17 +7,19 @@ import l from 'utils/translate';
 
 import './index.scss';
 
-const ORDERED_ROUTES = Object.values(ROUTES).sort((a, b) => a.order - b.order);
+const ORDERED_ROUTES = (
+    Object.values(ROUTES).filter((route) => typeof route.order === 'number').sort((a, b) => a.order - b.order)
+);
 
 export default class Navigation extends Component {
 
     render() {
         return (
             <Container className="app__navigation">
-                <nav>
-                    <ul>
+                <nav className="nav">
+                    <ul className="nav__list">
                         {ORDERED_ROUTES.map(({ title, path, exac }) => (
-                            <li key={path}>
+                            <li className="nav__list-item" key={path}>
                                 <NavLink to={path} exac={exac}>
                                     {l(title)}
                                 </NavLink>

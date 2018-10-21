@@ -24,6 +24,9 @@ const ROUTES = {
         title: 'Categories',
         component: withAsyncImport(() => import(/* webpackChunkName: "Categories" */ 'pages/Categories')),
     },
+    noMatch: {
+        component: withAsyncImport(() => import(/* webpackChunkName: "Categories" */ 'pages/NoMatch')),
+    }
 };
 
 export default ROUTES;
