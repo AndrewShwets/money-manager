@@ -1,7 +1,25 @@
+@import "style/index.scss";
+
 .nav__list {
   list-style: none;
+  position: relative;
 }
 
 .nav__list-item {
   padding: 10px;
+  color: $primary;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: $fontBold;
+  }
+}
+
+.nav__underline {
+  position: absolute;
+  top: 100%;
+  height: 2px;
+  background-color: $info;
+  transition: all .3s linear;
 }
