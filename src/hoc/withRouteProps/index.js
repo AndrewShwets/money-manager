@@ -1,8 +1,3 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
-const withRouteProps = (ComposedComponent) => (props) => (
-    <Route children={(...route) => <ComposedComponent {...Object.assign({}, route, props)} />} />
-);
-
-export default withRouteProps;
+export default withRouter;

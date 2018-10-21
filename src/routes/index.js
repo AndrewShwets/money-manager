@@ -24,9 +24,6 @@ const ROUTES = {
         title: 'Categories',
         component: withAsyncImport(() => import(/* webpackChunkName: "Categories" */ 'pages/Categories')),
     },
-    noMatch: {
-        component: withAsyncImport(() => import(/* webpackChunkName: "Categories" */ 'pages/NoMatch')),
-    }
 };
 
 // Ordered routes for menu render
