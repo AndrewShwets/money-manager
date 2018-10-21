@@ -29,4 +29,9 @@ const ROUTES = {
     }
 };
 
+// Ordered routes for menu render
+export const ORDERED_ROUTES = (
+    Object.values(ROUTES).filter((route) => typeof route.order === 'number').sort((a, b) => a.order - b.order)
+);
+
 export default ROUTES;

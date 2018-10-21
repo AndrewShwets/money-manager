@@ -9,15 +9,17 @@ const { node, string } = PropTypes;
 const propTypes = {
     children: node.isRequired,
     className: string,
+    containerClassName: string,
 };
 
 const defaultProps = {
-    className: ''
+    className: '',
+    containerClassName: '',
 };
 
-const Container = ({ children, className }) => (
+const Container = ({ children, className, containerClassName }) => (
     <div className={classNames('flex flex__justifyContent_center', className)}>
-        <div className="container">
+        <div className={classNames('container', containerClassName)}>
             {children}
         </div>
     </div>
