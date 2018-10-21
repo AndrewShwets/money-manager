@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import withRouteProps from 'hoc/withRouteProps/index';
 import classNames from 'utils/classNames/index';
 import l from 'utils/translate/index';
-import { ORDERED_ROUTES } from 'routes';
+import { NAVIGATION_ROUTES } from 'routes';
 
 import './index.scss';
 
@@ -26,7 +26,7 @@ class Navigation extends PureComponent {
         return (
             <nav className={classNames('nav', className)}>
                 <ul className="flex nav__list">
-                    {ORDERED_ROUTES.map(({ title, path, exac }, index) => (
+                    {NAVIGATION_ROUTES.map(({ title, path, exac }, index) => (
                         <li className="nav__list-item" key={path}>
                             <NavLink
                                 to={path}

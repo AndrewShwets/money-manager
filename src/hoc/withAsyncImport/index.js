@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 
+/**
+ * Splits target component into separate file
+ * @param {function || class} ComposedComponent
+ * @returns {AsyncImport}
+ */
 const withAsyncImport = (ComposedComponent) => {
     class AsyncImport extends Component {
         state = {

@@ -1,27 +1,32 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
+import ROUTES, { CONTENT_ROUTES_PATHS } from 'routes';
+import withRouteProps from 'hoc/withRouteProps';
 import Header from 'components/Header';
 import Content from 'components/Content';
 import Footer from 'components/Footer';
 
-export default class App extends Component {
+class App extends Component {
 
     render() {
+        const { location } = this.props;
+
+        // Doesn't render content when route without content property
         return (
-            <Router>
-                <Switch>
-                    <Route>
-                        <Fragment>
-                            <Header/>
-                            <Content/>
-                            <Footer/>
-                        </Fragment>
-                    </Route>
-                    <Route exact path="/login" component={() => <div>Login</div>} />
-                    <Route component={() => <div>No match</div>} />
-                </Switch>
-            </Router>
+            <Switch>
+                {CONTENT_ROUTES_PATHS.includes(location.pathname) && (
+                    <Fragment>
+                        <Header/>
+                        <Content/>
+                        <Footer/>
+                    </Fragment>
+                )}
+                <Route {...ROUTES.login} />
+                <Route {...ROUTES.noMatch} />
+            </Switch>
         )
     }
 };
+
+export default withRouteProps(App);
