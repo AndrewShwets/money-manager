@@ -1,0 +1,3 @@
+@mixin Transition($name: all) {
+  transition: $name .2s linear;
+}
