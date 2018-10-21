@@ -1,0 +1,6 @@
+@import "style/index.scss";
+
+.app__header {
+  height: $headerHeight;
+  @include borderBottom();
+}

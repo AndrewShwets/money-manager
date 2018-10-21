@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from 'components/Markup/Container';
+import Container from 'components/Container';
 import l from 'utils/translate';
 
 import './index.scss';

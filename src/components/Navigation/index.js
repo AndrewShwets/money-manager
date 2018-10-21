@@ -1,20 +1,45 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom'
 
-import Container from 'components/Markup/Container';
-import Nav from 'components/Markup/Nav';
+import withRouteProps from 'hoc/withRouteProps/index';
+import classNames from 'utils/classNames/index';
+import l from 'utils/translate/index';
+import { ORDERED_ROUTES } from 'routes';
 
 import './index.scss';
 
-export default class Navigation extends Component {
+const { string } = PropTypes;
+
+class Navigation extends PureComponent {
+    static propTypes = {
+        className: string,
+    }
+
+    static defaultProps = {
+        className: '',
+    }
 
     render() {
+        const { className } = this.props;
+
         return (
-            <Container
-                className="app__navigation"
-                containerClassName="flex"
-            >
-                <Nav className="pull_right"/>
-            </Container>
-        )
+            <nav className={classNames('nav', className)}>
+                <ul className="flex nav__list">
+                    {ORDERED_ROUTES.map(({ title, path, exac }, index) => (
+                        <li className="nav__list-item" key={path}>
+                            <NavLink
+                                to={path}
+                                exac={exac}
+                            >
+                                {l(title)}
+                            </NavLink>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+        );
     }
 };
+
+export default withRouteProps(Navigation);

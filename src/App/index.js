@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 
-import Navigation from 'components/Navigation';
+import Header from 'components/Header';
 import Content from 'components/Content';
 import Footer from 'components/Footer';
 
@@ -11,7 +11,7 @@ export default class App extends Component {
         return (
             <Router>
                 <Fragment>
-                    <Navigation/>
+                    <Header/>
                     <Content/>
                     <Footer/>
                 </Fragment>

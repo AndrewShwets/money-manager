@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Container from 'components/Markup/Container';
+import Container from 'components/Container';
 import ROUTES from 'routes';
 
 import './index.scss';

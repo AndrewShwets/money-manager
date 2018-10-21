@@ -1,6 +1,7 @@
-@import "style/index.scss";
+.nav__list {
+  list-style: none;
+}
 
-.app__navigation {
-  height: $headerHeight;
-  @include borderBottom();
+.nav__list-item {
+  padding: 10px;
 }
