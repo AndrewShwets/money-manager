@@ -4,8 +4,10 @@ import { Route, Switch } from "react-router-dom";
 import ROUTES, { CONTENT_ROUTES_PATHS } from 'routes';
 import withRouteProps from 'hoc/withRouteProps';
 import Header from 'components/Header';
-import Content from 'components/Content';
 import Footer from 'components/Footer';
+import Container from 'components/Container/index';
+
+import './index.scss';
 
 class App extends Component {
 
@@ -18,7 +20,11 @@ class App extends Component {
                 {CONTENT_ROUTES_PATHS.includes(location.pathname) && (
                     <Fragment>
                         <Header/>
-                        <Content/>
+                        <Container className="app__content">
+                            <Route {...ROUTES.categories} />
+                            <Route {...ROUTES.expenses_add} />
+                            <Route {...ROUTES.expenses_summary} />
+                        </Container>
                         <Footer/>
                     </Fragment>
                 )}

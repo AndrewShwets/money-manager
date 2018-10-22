@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 
 import Container from 'components/Container';
-import Navigation from 'components/Navigation';
+import Navigation from './components/Navigation';
 
 import './index.scss';
 
-export default class Header extends Component {
+const Header = () => (
+    <Container
+        className="app__header"
+        containerClassName="flex"
+    >
+        <Navigation className="pull_right"/>
+    </Container>
+);
 
-    render() {
-        return (
-            <Container
-                className="app__header"
-                containerClassName="flex"
-            >
-                <Navigation className="pull_right"/>
-            </Container>
-        )
-    }
-};
+export default Header;
