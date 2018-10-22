@@ -19,7 +19,7 @@ const defaultProps = {
 
 const Container = ({ children, className, containerClassName }) => (
     <div className={classNames('flex flex__justifyContent_center', className)}>
-        <div className={classNames('container', containerClassName)}>
+        <div className={classNames('flex container', containerClassName)}>
             {children}
         </div>
     </div>

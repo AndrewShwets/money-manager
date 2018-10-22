@@ -1,0 +1,27 @@
+@import "style/index.scss";
+
+.form__group {
+  margin-bottom: 15px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  label {
+    line-height: $inputHeight;
+  }
+
+  &_horizontal {
+    label {
+      padding-right: 10px;
+      text-align: right;
+      width: 150px;
+      font-weight: $fontBold;
+    }
+  }
+}
+
+.form__control {
+  height: $inputHeight;
+  padding: 0 5px;
+}

@@ -5,6 +5,12 @@
       justify-content: center;
     }
   }
+
+  &__alignContent {
+    &_center {
+      align-content: center;
+    }
+  }
 }
 
 .pull_right {

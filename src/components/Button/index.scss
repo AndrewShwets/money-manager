@@ -1,0 +1,12 @@
+@import "style/index.scss";
+
+.btn {
+  padding: 5px 15px;
+  font-weight: $fontBold;
+
+  &_primary {
+    //background-color: $primary;
+    //color: $light;
+    //border-color: $primary;
+  }
+}
