@@ -1,7 +1,9 @@
 import React from 'react';
 
-const Categories = () => (
+import withCategories from 'hoc/withCategories';
+
+const Categories = (props) => console.log(props) || (
     <div>Categories</div>
 );
 
-export default Categories;
+export default withCategories(Categories);
