@@ -55,15 +55,19 @@ class Navigation extends PureComponent {
     updateMenuStyle = () => {
         const { location } = this.props;
 
+        console.log(this.props);
+
         const navCoord = getElemCoord(this._nav);
         const selectedItemCoord = getElemCoord(this._menuItems[location.pathname]);
 
-        this.setState({
-            menuItemStyle: {
-                left: `${selectedItemCoord.left - navCoord.left + 10}px`,
-                right: `${navCoord.right - selectedItemCoord.right + 10}px`,
-            },
-        })
+        if (selectedItemCoord) {
+            this.setState({
+                menuItemStyle: {
+                    left: `${selectedItemCoord.left - navCoord.left + 10}px`,
+                    right: `${navCoord.right - selectedItemCoord.right + 10}px`,
+                },
+            })
+        }
     }
 
     render() {

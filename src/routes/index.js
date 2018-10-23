@@ -1,3 +1,4 @@
+import React from 'react';
 import withAsyncImport from 'hoc/withAsyncImport';
 
 /**
@@ -27,6 +28,13 @@ const ROUTES = {
         path: '/categories',
         title: 'Categories',
         component: withAsyncImport(() => import(/* webpackChunkName: "Categories" */ 'pages/Categories')),
+        actions: {
+            add_category: {
+                path: '/categories/add-category',
+                title: 'Add categories',
+                component: () => <div>Test</div>,
+            },
+        },
     },
     login: {
         order: 3,

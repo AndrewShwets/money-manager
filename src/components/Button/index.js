@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTpyes from 'prop-types';
 import classNames from 'utils/classNames';
+import STATUSES from 'data/statuses';
 
 import './index.scss';
 
@@ -10,7 +11,7 @@ const propTypes = {
     onClick: func,
     className: string,
     children: node,
-    bsStyle: oneOf(['info', 'primary', 'success', 'warning', 'danger']),
+    bsStyle: oneOf(STATUSES),
     type: string,
     disabled: bool,
     active: bool,
@@ -39,9 +40,8 @@ const Button = ({
     <button
         onClick={onClick}
         type={type}
-        className={classNames(`btn btn_${bsStyle}`, className)}
+        className={classNames(`btn btn_${bsStyle} ${active ? 'btn_active' : ''}`, className)}
         disabled={disabled}
-        active={active}
     >
         {children}
     </button>

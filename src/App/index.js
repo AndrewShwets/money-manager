@@ -11,17 +11,34 @@ import './index.scss';
 
 class App extends Component {
 
-    render() {
+    checkRouteWithContent = () => {
         const { location } = this.props;
+
+        return (
+            CONTENT_ROUTES_PATHS.some((route) => {
+                if(location.pathname === '/' && route === location.pathname) {
+                    return true;
+                } else if (location.pathname.indexOf(route)){
+                    return true;
+                }
+
+                return false;
+            })
+        );
+    }
+
+    render() {
+        console.log(this.props);
 
         // Doesn't render content when route without content property
         return (
             <Switch>
-                {CONTENT_ROUTES_PATHS.includes(location.pathname) && (
+                {this.checkRouteWithContent() && (
                     <Fragment>
                         <Header/>
                         <Container className="app__content">
                             <Route {...ROUTES.categories} />
+                            <Route {...ROUTES.categories.actions.add_category} />
                             <Route {...ROUTES.expenses_add} />
                             <Route {...ROUTES.expenses_summary} />
                         </Container>
