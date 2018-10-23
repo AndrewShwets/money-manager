@@ -46,7 +46,7 @@ const Input = ({
             name={name}
             component={component}
             type={type}
-            className="form__control"
+            className="form__control flex__item_justify"
         />
     </div>
 );

@@ -13,19 +13,10 @@ export default reduxForm({
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
             <Input
-                label="First Name"
-                name="firstName"
+                label="Category name"
+                name="category"
             />
-            <Input
-                label="Last Name"
-                name="lastName"
-            />
-            <Input
-                label="Email"
-                name="email"
-                type="email"
-            />
-            <Button type="submit">{l('Submit')}</Button>
+            <Button className="pull_right" type="submit">{l('Create category')}</Button>
         </Form>
     );
 })

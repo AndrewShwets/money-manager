@@ -49,24 +49,44 @@ class Navigation extends PureComponent {
     }
 
     /**
+     * Gets active menu item by route
+     * @param {object} items - menu links
+     * @param {string} pathname - app path name
+     */
+    getActiveMenuRoute = (items, pathname) => {
+        let path;
+
+        Object.keys(items).forEach((route) => {
+            if(pathname === '/' && route === pathname) {
+                path = '/';
+            } else if (~pathname.indexOf(route)){
+                path = route;
+            }
+        })
+
+        return path;
+    }
+
+    /**
      * Calculates nav coordinates and selected menu item,
      * for updating underline styles
      */
     updateMenuStyle = () => {
-        const { location } = this.props;
+        const { location: { pathname } } = this.props;
+        const path = this.getActiveMenuRoute(this._menuItems, pathname);
 
-        console.log(this.props);
+        if (path) {
+            const navCoord = getElemCoord(this._nav);
+            const selectedItemCoord = getElemCoord(this._menuItems[path]);
 
-        const navCoord = getElemCoord(this._nav);
-        const selectedItemCoord = getElemCoord(this._menuItems[location.pathname]);
-
-        if (selectedItemCoord) {
-            this.setState({
-                menuItemStyle: {
-                    left: `${selectedItemCoord.left - navCoord.left + 10}px`,
-                    right: `${navCoord.right - selectedItemCoord.right + 10}px`,
-                },
-            })
+            if (selectedItemCoord) {
+                this.setState({
+                    menuItemStyle: {
+                        left: `${selectedItemCoord.left - navCoord.left + 10}px`,
+                        right: `${navCoord.right - selectedItemCoord.right + 10}px`,
+                    },
+                })
+            }
         }
     }
 

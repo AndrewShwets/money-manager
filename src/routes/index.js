@@ -1,5 +1,6 @@
-import React from 'react';
+import { AddCategoriesModal } from 'components/Modal';
 import withAsyncImport from 'hoc/withAsyncImport';
+import getContentRoutesPaths from 'utils/getContentRoutesPaths';
 
 /**
  * Routes schema
@@ -28,11 +29,12 @@ const ROUTES = {
         path: '/categories',
         title: 'Categories',
         component: withAsyncImport(() => import(/* webpackChunkName: "Categories" */ 'pages/Categories')),
-        actions: {
+        subRoute: {
             add_category: {
+                content: true,
                 path: '/categories/add-category',
                 title: 'Add categories',
-                component: () => <div>Test</div>,
+                component: AddCategoriesModal,
             },
         },
     },
@@ -58,6 +60,6 @@ export const CONTENT_ROUTES = (
 );
 
 // Valid paths to render for routes with content
-export const CONTENT_ROUTES_PATHS = CONTENT_ROUTES.map((route) => route.path);
+export const CONTENT_ROUTES_PATHS = getContentRoutesPaths(ROUTES);
 
 export default ROUTES;

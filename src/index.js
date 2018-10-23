@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from 'react-redux';
 
+import initAppLocalStorage from 'localStorage';
+
 import store from 'store';
 
 import 'normalize.css';
@@ -11,6 +13,8 @@ import 'style/index.scss';
 import App from 'App';
 
 import * as serviceWorker from './serviceWorker';
+
+initAppLocalStorage();
 
 ReactDOM.render((
     <Router>
