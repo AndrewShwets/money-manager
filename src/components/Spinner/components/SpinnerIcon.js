@@ -2,7 +2,7 @@ import React from 'react';
 import './index.scss';
 
 const SpinnerIcon = () => (
-    <div class="lds-spinner">
+    <div className="lds-spinner">
         <div />
         <div />
         <div />

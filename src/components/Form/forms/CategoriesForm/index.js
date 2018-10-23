@@ -6,7 +6,7 @@ import Button from 'components/Button';
 
 export default reduxForm({
     // a unique name for the form
-    form: 'CategoriesForm'
+    form: 'CategoriesForm',
 })(props => {
     const { onSubmit, handleSubmit } = props;
 

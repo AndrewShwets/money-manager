@@ -14,15 +14,21 @@ class AddCategoriesModal extends Component {
         history.push(ROUTES.categories.path);
     }
 
-    onSubmit = (form, dispatch) => {
-        console.log(form);
-        dispatch({ type: ON_ADD_CATEGORY });
+    /**
+     * Adds category to storage
+     * @param {string} category
+     * @param {function} dispatch
+     * @returns {null}
+     */
+    onSubmit = ({ category }, dispatch) => {
+        const { history } = this.props;
+        if (!category) return null;
+
+        dispatch({ type: ON_ADD_CATEGORY, category, history });
     }
 
     render() {
         const { isAddingCategory } = this.props;
-
-        console.log(this.props);
 
         return (
             <Modal

@@ -10,14 +10,19 @@ const initialState = {
 export default combineReducers({
     items(state = initialState.items, action) {
         switch (action.type){
-
+            case types.GET_CATEGORIES_SUCCESS:
+                return action.result;
             default:
                 return state;
         }
     },
     isLoading(state = initialState.isLoading, action) {
         switch (action.type){
-
+            case types.GET_CATEGORIES_REQUEST:
+                return true;
+            case types.GET_CATEGORIES_SUCCESS:
+            case types.GET_CATEGORIES_FAILURE:
+                return false;
             default:
                 return state;
         }
@@ -28,6 +33,7 @@ export default combineReducers({
                 return true;
             case types.ADD_CATEGORY_SUCCESS:
             case types.ADD_CATEGORY_FAILURE:
+                return false;
             default:
                 return state;
         }

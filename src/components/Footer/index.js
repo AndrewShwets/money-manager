@@ -5,7 +5,7 @@ import l from 'utils/translate';
 import './index.scss';
 
 const Footer = () => (
-    <Container className="app__footer text_center">
+    <Container className="app__footer">
         <div className="app__footer-content">
             &copy; {l('Money manager')}
         </div>
