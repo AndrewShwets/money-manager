@@ -11,3 +11,11 @@ body {
 .app {
   background-color: $light;
 }
+
+.clear__fix {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}

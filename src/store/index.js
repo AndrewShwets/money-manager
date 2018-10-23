@@ -1,12 +1,16 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form'
+import createSagaMiddleware from 'redux-saga'
+import { reducer as formReducer } from 'redux-form';
 import CONFIGS from 'configs';
 import rootReducer from 'reducers';
+import rootSagas from 'sagas';
 
 const reducers = combineReducers({
     form: formReducer,
     rootReducer,
 })
+
+const sagaMiddleware = createSagaMiddleware();
 
 /* eslint-disable */
 const composeEnhancers = (
@@ -14,7 +18,9 @@ const composeEnhancers = (
 );
 /* eslint-enable */
 
-const middlewares = [];
+const middlewares = [
+    sagaMiddleware,
+];
 
 if (CONFIGS.IS_DEV) {
     const { logger } = require(`redux-logger`);
@@ -28,6 +34,8 @@ const store = createStore(
         applyMiddleware(...middlewares),
     ),
 );
+
+sagaMiddleware.run(rootSagas);
 
 export default store;
 

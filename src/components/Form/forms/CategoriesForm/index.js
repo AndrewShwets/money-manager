@@ -11,7 +11,7 @@ export default reduxForm({
     const { onSubmit, handleSubmit } = props;
 
     return (
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form className="clear__fix" onSubmit={handleSubmit(onSubmit)}>
             <Input
                 label="Category name"
                 name="category"
