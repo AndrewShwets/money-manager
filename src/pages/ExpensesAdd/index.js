@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import AddExpenseForm from 'components/Form/forms/AddExpenseForm';
 import l from 'utils/translate';
+import withExpenseAddingLoadState from 'hoc/withExpenseAddingLoadState';
+import Spinner from 'components/Spinner';
+import * as types from 'constants/expenses';
 
-export default class ExpensesAdd extends Component {
+class ExpensesAdd extends Component {
     constructor(props) {
         super(props);
 
@@ -10,15 +13,28 @@ export default class ExpensesAdd extends Component {
     }
 
     onSubmit = (values, dispatch) => {
-        console.log(values);
+        // Dispatch only when fields are filled in
+        if (Object.keys(values).length) {
+            dispatch({
+                type: types.ON_ADD_EXPENSE,
+                expense: values,
+                resetForm: this.resetForm,
+            });
+        }
+    }
 
+    resetForm = () => {
         this._form.reset();
     }
 
     render() {
-
+        const { isAddingExpense } = this.props;
+        
         return (
-            <div className="flex__item_justify">
+            <Spinner
+                spin={isAddingExpense}
+                className="flex__item_justify"
+            >
                 <header className="text_center">
                     <h2>{l('ExpensesAdd')}</h2>
                 </header>
@@ -29,8 +45,10 @@ export default class ExpensesAdd extends Component {
                         onSubmit={this.onSubmit}
                     />
                 </section>
-            </div>
+            </Spinner>
         );
     }
 }
+
+export default withExpenseAddingLoadState(ExpensesAdd);
 

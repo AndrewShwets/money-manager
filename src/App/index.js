@@ -41,11 +41,12 @@ class App extends Component {
                     <Fragment>
                         <Header/>
                         <Container className="app__content">
+                            <Route {...ROUTES.home_page} />
+                            <Route {...ROUTES.expenses_summary} />
                             <Route {...ROUTES.categories} />
                             <Route {...ROUTES.categories.subRoute.add_category} />
                             <Route {...ROUTES.categories.subRoute.edit_category} />
                             <Route {...ROUTES.expenses_add} />
-                            <Route {...ROUTES.expenses_summary} />
                         </Container>
                         <Footer/>
                     </Fragment>

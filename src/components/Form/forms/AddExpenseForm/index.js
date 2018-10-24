@@ -24,7 +24,7 @@ export default reduxForm({
             />
             <Input
                 label="Date"
-                name="expensneDate"
+                name="expenseDate"
                 type="date"
             />
             <SelectWithCategories

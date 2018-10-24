@@ -11,13 +11,20 @@ import getContentRoutesPaths from 'utils/getContentRoutesPaths';
  * content - needs for render only content routes *
  */
 const ROUTES = {
+    home_page: {
+        order: -1,
+        content: true,
+        path: '/',
+        title: 'Home page',
+        component: withAsyncImport(() => import(/* webpackChunkName: "HomePage" */ 'pages/Home')),
+        exact: true,
+    },
     expenses_summary: {
         order: 0,
         content: true,
-        path: '/',
+        path: '/expenses-summary',
         title: 'Expenses summary',
         component: withAsyncImport(() => import(/* webpackChunkName: "ExpensesSummary" */ 'pages/ExpensesSummary')),
-        exact: true,
     },
     expenses_add: {
         order: 1,
