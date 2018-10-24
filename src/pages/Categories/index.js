@@ -18,6 +18,7 @@ class Categories extends Component {
                 items,
                 isLoading,
             },
+            deleteCategory,
         } = this.props;
 
         return (
@@ -42,6 +43,7 @@ class Categories extends Component {
                             key={id}
                             id={id}
                             name={name}
+                            onRemoveCategory={deleteCategory}
                         />
                     ))}
                 </section>

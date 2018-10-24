@@ -2,9 +2,12 @@ import { takeLatest, put } from 'redux-saga/effects';
 import * as types from 'constants/categories';
 import ROUTES from 'routes';
 
-import addCategory from 'localStorage/addCategory';
-import fetchCategories from 'localStorage/fetchCategories';
-import editCategory from 'localStorage/editCategory';
+import {
+    addCategory,
+    fetchCategories,
+    editCategory,
+    deleteCategory,
+} from 'localStorage/category';
 
 function* updateCategoriesSaga(action) {
     const { category, history } = action;
@@ -30,6 +33,7 @@ function* editCategorySaga(action) {
     try {
         yield put({ type: types.ADD_CATEGORY_REQUEST });
 
+
         const result = yield editCategory(category);
         yield put({ type: types.ADD_CATEGORY_SUCCESS, result });
 
@@ -48,7 +52,7 @@ function* editCategorySaga(action) {
  * @param redirect
  * @param action
  */
-function* addCategorySuccessSaga(redirect, action) {
+function* fetchCategoriesSaga(redirect, action) {
     const { history } = action;
 
     try {
@@ -66,11 +70,17 @@ function* addCategorySuccessSaga(redirect, action) {
     }
 }
 
+function* deleteCategorySaga(action) {
+    yield deleteCategory(action.categoryId);
+    yield fetchCategoriesSaga(false, action);
+}
+
 function* rootSagas() {
     yield takeLatest(types.ON_ADD_CATEGORY, updateCategoriesSaga);
-    yield takeLatest(types.ADD_CATEGORY_SUCCESS, addCategorySuccessSaga, true);
-    yield takeLatest(types.GET_CATEGORIES, addCategorySuccessSaga, false);
+    yield takeLatest(types.ADD_CATEGORY_SUCCESS, fetchCategoriesSaga, true);
+    yield takeLatest(types.GET_CATEGORIES, fetchCategoriesSaga, false);
     yield takeLatest(types.ON_EDIT_CATEGORY, editCategorySaga);
+    yield takeLatest(types.DELETE_CATEGORY, deleteCategorySaga);
 }
 
 export default rootSagas;

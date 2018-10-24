@@ -20,7 +20,7 @@ export default class Category extends Component {
     onRemoveCategory = () => {
         const { onRemoveCategory, id } = this.props;
 
-        // onRemoveCategory(id);
+        onRemoveCategory(id);
     }
 
     render() {

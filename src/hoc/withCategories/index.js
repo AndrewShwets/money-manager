@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { categories } from 'selectors';
 import { categories as categoriesActions } from 'actions';
 
-const { getCategories } = categoriesActions;
+const { getCategories, deleteCategory } = categoriesActions;
 
 export default (ComposedComponent, actions = null) => {
     class WithCategories extends Component {
@@ -33,6 +33,7 @@ export default (ComposedComponent, actions = null) => {
         connect(categories, {
             ...actions,
             getCategories,
+            deleteCategory,
         })(WithCategories)
     );
 }
