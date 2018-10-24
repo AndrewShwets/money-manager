@@ -10,8 +10,6 @@ import Category from './components/Category';
 import './index.scss';
 
 class Categories extends Component {
-
-
     render() {
         const {
             categories: {
@@ -37,7 +35,7 @@ class Categories extends Component {
                         {l('Create category')}
                     </Link>
                 </section>
-                <section className="categories__section">
+                <section className="section">
                     {items.map(({ id, name }) => (
                         <Category
                             key={id}

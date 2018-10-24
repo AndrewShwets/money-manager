@@ -6,7 +6,7 @@ import l from 'utils/translate';
 
 import './index.scss';
 
-const { string, oneOf, oneOfType, func } = PropTpyes;
+const { string, oneOf, oneOfType, func, node } = PropTpyes;
 
 const FORM_GROUP_TYPE = {
     left: 'horizontal',
@@ -18,8 +18,9 @@ const propTypes = {
     className: string,
     label: string,
     labelPosition: oneOf(['top', 'left']),
-    type: oneOf(['text', 'email']),
+    type: oneOf(['text', 'email', 'select', 'number', 'date']),
     component: oneOfType([string, func]),
+    children: node,
 };
 
 const defaultProps = {
@@ -28,6 +29,7 @@ const defaultProps = {
     labelPosition: 'left',
     type: 'text',
     component: 'input',
+    children: null,
 };
 
 const Input = ({
@@ -36,6 +38,7 @@ const Input = ({
    component,
    name,
    labelPosition,
+   children,
     label,
 }) => (
     <div className={classNames(`flex flex__alignContent_center form__group form__group_${FORM_GROUP_TYPE[labelPosition]}`, className)}>
@@ -47,7 +50,9 @@ const Input = ({
             component={component}
             type={type}
             className="form__control flex__item_justify"
-        />
+        >
+            {children}
+        </Field>
     </div>
 );
 
