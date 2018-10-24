@@ -2,6 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ModalWindow from 'react-modal';
 
+const customStyles = {
+    content: {
+        top: '50px',
+        left: '50%',
+        bottom: '30%',
+        width: '600px',
+        transform: 'translateX(-50%)'
+    }
+};
+
 const { bool, func, node } = PropTypes;
 
 const propTypes = {
@@ -18,10 +28,10 @@ const defaultProps = {
 };
 
 const Modal = ({
-    isOpen,
-    afterOpenModal,
-    onCloseModal,
-    children,
+   isOpen,
+   afterOpenModal,
+   onCloseModal,
+   children,
 }) => {
 
     return (
@@ -30,6 +40,7 @@ const Modal = ({
             onAfterOpen={afterOpenModal}
             onRequestClose={onCloseModal}
             contentLabel="Example Modal"
+            style={customStyles}
         >
             {children}
         </ModalWindow>

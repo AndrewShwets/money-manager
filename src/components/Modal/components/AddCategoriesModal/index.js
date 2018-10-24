@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { ON_ADD_CATEGORY } from 'constants/categories';
 import ROUTES from 'routes';
 import { CategoriesForm } from 'components/Form';
-import withAddingCategoryState from 'hoc/withAddingCategoryState';
+import withCategoryLoadingState from 'hoc/withCategoryLoadingState';
 import Modal from 'components/Modal';
 import Spinner from 'components/Spinner';
 
@@ -45,4 +45,4 @@ class AddCategoriesModal extends Component {
     }
 };
 
-export default withAddingCategoryState(AddCategoriesModal);
+export default withCategoryLoadingState(AddCategoriesModal);

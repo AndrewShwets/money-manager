@@ -5,12 +5,14 @@ import Spinner from 'components/Spinner';
 import ROUTES from 'routes';
 import withCategories from 'hoc/withCategories';
 import l from 'utils/translate';
+import Category from './components/Category';
+
+import './index.scss';
 
 class Categories extends Component {
 
 
     render() {
-        console.log(this.props);
         const {
             categories: {
                 items,
@@ -33,6 +35,15 @@ class Categories extends Component {
                     >
                         {l('Create category')}
                     </Link>
+                </section>
+                <section className="categories__section">
+                    {items.map(({ id, name }) => (
+                        <Category
+                            key={id}
+                            id={id}
+                            name={name}
+                        />
+                    ))}
                 </section>
             </Spinner>
         );

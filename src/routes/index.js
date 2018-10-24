@@ -1,4 +1,7 @@
-import { AddCategoriesModal } from 'components/Modal';
+import {
+    AddCategoriesModal,
+    EditCategoryModal,
+} from 'components/Modal';
 import withAsyncImport from 'hoc/withAsyncImport';
 import getContentRoutesPaths from 'utils/getContentRoutesPaths';
 
@@ -35,6 +38,12 @@ const ROUTES = {
                 path: '/categories/add-category',
                 title: 'Add categories',
                 component: AddCategoriesModal,
+            },
+            edit_category: {
+                content: true,
+                path: '/categories/edit-category/:id',
+                title: 'Edit categories',
+                component: EditCategoryModal,
             },
         },
     },

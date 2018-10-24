@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch } from "react-router-dom";
-
 import ROUTES, { CONTENT_ROUTES_PATHS } from 'routes';
 import withRouteProps from 'hoc/withRouteProps';
 import Header from 'components/Header';
@@ -10,18 +9,39 @@ import Container from 'components/Container/index';
 import './index.scss';
 
 class App extends Component {
+
+    /**
+     * Checks whether to render content or not
+     * @param pathname
+     * @returns {boolean}
+     */
+    validateRoute = (pathname) => {
+        if (pathname === '/') return true;
+
+        let isValid = false;
+
+        CONTENT_ROUTES_PATHS.forEach((path) => {
+            if (pathname.includes(path)) {
+                isValid = true;
+            }
+        });
+
+        return isValid;
+    }
+
     render() {
         const { location: { pathname } } = this.props;
 
         // Doesn't render content when route without content property
         return (
             <Switch>
-                {CONTENT_ROUTES_PATHS.includes(pathname) && (
+                {this.validateRoute(pathname) && (
                     <Fragment>
                         <Header/>
                         <Container className="app__content">
                             <Route {...ROUTES.categories} />
                             <Route {...ROUTES.categories.subRoute.add_category} />
+                            <Route {...ROUTES.categories.subRoute.edit_category} />
                             <Route {...ROUTES.expenses_add} />
                             <Route {...ROUTES.expenses_summary} />
                         </Container>

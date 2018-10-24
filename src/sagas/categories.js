@@ -4,8 +4,9 @@ import ROUTES from 'routes';
 
 import addCategory from 'localStorage/addCategory';
 import fetchCategories from 'localStorage/fetchCategories';
+import editCategory from 'localStorage/editCategory';
 
-function* updateCategories(action) {
+function* updateCategoriesSaga(action) {
     const { category, history } = action;
 
     try {
@@ -23,7 +24,31 @@ function* updateCategories(action) {
     }
 }
 
-function* addCategorySuccess(redirect, action) {
+function* editCategorySaga(action) {
+    const { history, category } = action;
+
+    try {
+        yield put({ type: types.ADD_CATEGORY_REQUEST });
+
+        const result = yield editCategory(category);
+        yield put({ type: types.ADD_CATEGORY_SUCCESS, result });
+
+        // Redirects only after successed adding of categories item
+        if (history) {
+            // Goes back to category page
+            yield history.push(ROUTES.categories.path);
+        }
+    } catch (error) {
+        yield put({ type: types.ADD_CATEGORY_FAILURE });
+    }
+}
+
+/**
+ * After successful adding or retrieving
+ * @param redirect
+ * @param action
+ */
+function* addCategorySuccessSaga(redirect, action) {
     const { history } = action;
 
     try {
@@ -42,9 +67,10 @@ function* addCategorySuccess(redirect, action) {
 }
 
 function* rootSagas() {
-    yield takeLatest(types.ON_ADD_CATEGORY, updateCategories);
-    yield takeLatest(types.ADD_CATEGORY_SUCCESS, addCategorySuccess, true);
-    yield takeLatest(types.GET_CATEGORIES, addCategorySuccess, false);
+    yield takeLatest(types.ON_ADD_CATEGORY, updateCategoriesSaga);
+    yield takeLatest(types.ADD_CATEGORY_SUCCESS, addCategorySuccessSaga, true);
+    yield takeLatest(types.GET_CATEGORIES, addCategorySuccessSaga, false);
+    yield takeLatest(types.ON_EDIT_CATEGORY, editCategorySaga);
 }
 
 export default rootSagas;
