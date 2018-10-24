@@ -20,6 +20,9 @@ class App extends Component {
 
         let isValid = false;
 
+        // @Todo AndrewShwets Bad design
+        if (pathname === ROUTES.login.path) return false;
+
         CONTENT_ROUTES_PATHS.forEach((path) => {
             if (pathname.includes(path)) {
                 isValid = true;
@@ -31,7 +34,6 @@ class App extends Component {
 
     render() {
         const { location: { pathname } } = this.props;
-
         // Doesn't render content when route without content property
         return (
             <Switch>
