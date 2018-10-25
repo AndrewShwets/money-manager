@@ -14,9 +14,7 @@ function* updateCategoriesSaga(action) {
 
     try {
         yield put({ type: types.ADD_CATEGORY_REQUEST });
-
         const addedCategory = yield addCategory(category);
-
         yield put({
             type: types.ADD_CATEGORY_SUCCESS,
             history,
@@ -32,8 +30,6 @@ function* editCategorySaga(action) {
 
     try {
         yield put({ type: types.ADD_CATEGORY_REQUEST });
-
-
         const result = yield editCategory(category);
         yield put({ type: types.ADD_CATEGORY_SUCCESS, result });
 

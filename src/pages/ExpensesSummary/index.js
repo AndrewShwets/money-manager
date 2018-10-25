@@ -2,15 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 
+import PageHeader from 'components/PageHeader';
+import FormGroup from 'components/Form';
+import SelectWithCategories from 'components/Form/components/SelectWithCategories';
 import withExpenses from 'hoc/withExpenses';
 import withCategories from 'hoc/withCategories';
 import Spinner from 'components/Spinner';
+import Empty from 'components/Empty';
 import l from 'utils/translate';
+import Expense from './components/Expense';
 
-const { shape, arrayOf, bool, string } = PropTypes;
+const FormDecorator = FormGroup('sumExpenses');
+
+const { shape, arrayOf, bool, string, func } = PropTypes;
 
 class ExpensesSummary extends Component {
     static propTypes = {
+        deleteExpense: func.isRequired,
         expenses: shape({
             items: arrayOf(shape({
                 createdAt: string,
@@ -32,9 +40,21 @@ class ExpensesSummary extends Component {
         }).isRequired,
     }
 
-    render() {
+    state = {
+        selected: '',
+    }
 
+    onSubmit = () => {
+
+    }
+
+    onChange = ({ target: { value: selected } }) => {
+        this.setState({ selected });
+    }
+
+    render() {
         const {
+            deleteExpense,
             expenses: {
                 items: expenses,
                 isLoading: isLoadingExpenses,
@@ -45,18 +65,73 @@ class ExpensesSummary extends Component {
             },
         } = this.props;
 
-        console.log(this.props);
+        const { selected } = this.state;
+
+        const normalizedCategories = categories.reduce((norm, category) => {
+            return ({
+                ...norm,
+                [category.id]: {
+                    ...category,
+                },
+            })
+        }, {});
+
+        const filteredExpenses = expenses.filter((expense) => (
+            selected
+                ? expense.categoryId === selected
+                : true
+        ));
 
         return (
             <Spinner
                 spin={isLoadingCategories || isLoadingExpenses}
                 className="flex__item_justify"
             >
-                <header className="text_center">
-                    <h2>{l('ExpensesSummary')}</h2>
-                </header>
+                <PageHeader>
+                    {l('ExpensesSummary')}
+                </PageHeader>
+                <section className="section col-6">
+                    <FormDecorator
+                        onSubmit={this.onSubmit}
+                    >
+                        <SelectWithCategories
+                            onChange={this.onChange}
+                            name="expensesFilterSelect"
+                        />
+                    </FormDecorator>
+                </section>
                 <section className="section">
-                    vdsvds
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>{l('Discription')}</th>
+                                <th>{l('Category')}</th>
+                                <th>{l('Date')}</th>
+                                <th>{l('Actions')}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredExpenses.map(({ id, expenseDate, description, categoryId }) => {
+                                return (
+                                    <Expense
+                                        key={id}
+                                        name={description}
+                                        id={id}
+                                        date={expenseDate}
+                                        category={(
+                                            normalizedCategories[categoryId]
+                                                ? normalizedCategories[categoryId].name
+                                                : 'category doesn\'t exist'
+                                        )}
+                                        onRemoveExpense={deleteExpense}
+                                    />
+                                )
+                            })}
+                            {!Boolean(filteredExpenses.length) && (
+                                <Empty/>
+                            )}
+                        </tbody>
+                    </table>
                 </section>
             </Spinner>
         );

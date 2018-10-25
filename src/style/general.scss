@@ -8,6 +8,18 @@ body {
   font-weight: $fontLight;
 }
 
+table {
+  border: 1px solid $primary;
+  border-spacing: 15px;
+  font-size: $base;
+  width: 100%;
+}
+
+td {
+  padding: 5px;
+  border-bottom: 1px solid $primary;
+}
+
 .app {
   background-color: $light;
 }
@@ -22,4 +34,8 @@ body {
 
 .section {
   padding: 15px 60px;
+}
+
+.col-6 {
+  width: 50%;
 }

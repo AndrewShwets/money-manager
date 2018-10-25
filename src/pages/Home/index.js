@@ -1,7 +1,30 @@
 import React from 'react';
 
-const Home = () => (
-    <div>NomePage</div>
-);
+import withExpenses from 'hoc/withExpenses';
+import l from 'utils/translate';
+import PageHeader from 'components/PageHeader';
+import Spinner from 'components/Spinner';
 
-export default Home;
+const Home = (props) => {
+    console.log(props);
+    const {
+        expenses: {
+            items,
+            isLoading,
+        },
+    } = props;
+
+    return (
+        <Spinner
+            spin={isLoading}
+            className="flex__item_justify"
+        >
+            <PageHeader>
+                {l('NomePage')}
+            </PageHeader>
+        </Spinner>
+
+    );
+};
+
+export default withExpenses(Home);

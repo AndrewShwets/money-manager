@@ -10,44 +10,50 @@ import './index.scss';
 
 const { string, func } = PropTypes;
 
-export default class Category extends Component {
+export default class Expense extends Component {
     static propTypes = {
-        onRemoveCategory: func.isRequired,
+        onRemoveExpense: func.isRequired,
         id: string.isRequired,
         name: string.isRequired,
     }
 
-    onRemoveCategory = () => {
-        const { onRemoveCategory, id } = this.props;
+    onRemoveExpense = () => {
+        const { onRemoveExpense, id } = this.props;
 
-        onRemoveCategory(id);
+        onRemoveExpense(id);
     }
 
     render() {
-        const { id, name } = this.props;
+        const { id, name, date, category } = this.props;
 
         return (
-            <div className="flex category">
-                <div className="category__title">
+            <tr className="expense">
+                <td className="expense__title">
                     {name}
-                </div>
-                <div className="category__actions">
+                </td>
+                <td className="text_center">
+                    {category}
+                </td>
+                <td className="expense__date text_center">
+                    {date}
+                </td>
+                <td className="expense__actions">
                     <Button
-                        onClick={this.onRemoveCategory}
+                        onClick={this.onRemoveExpense}
                         className="pull_right btn btn_info"
                     >
                         {l('Delete')}
                     </Button>
                     <Link
-                        to={generatePath(ROUTES.categories.subRoute.edit_category.path, {
+                        to={generatePath(ROUTES.expenses.subRoute.edit_expense.path, {
                             id,
                         })}
                         className="pull_right btn btn_info"
                     >
                         {l('Edit')}
                     </Link>
-                </div>
-            </div>
+                </td>
+            </tr>
         )
     }
 };

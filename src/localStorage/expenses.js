@@ -49,53 +49,54 @@ export const fetchExpenses = () => {
     })
 };
 
-// /**
-//  * Deleting category from collection of categories
-//  * @param {string} categoryId
-//  * @returns {Promise}
-//  */
-// export const deleteCategory = (categoryId) => {
-//     return new Promise((resolve, reject) => {
-//         try {
-//             let data = JSON.parse(localStorage.getItem(categories));
-//
-//             data = data.filter((elem) => elem.id !== categoryId);
-//             localStorage.setItem(categories, JSON.stringify(data));
-//
-//             setTimeout(() => {
-//                 resolve('success');
-//             }, 0);
-//         } catch (error) {
-//             reject(error);
-//         }
-//     })
-// };
-//
-// /**
-//  * Editing category in collection of categories
-//  * @param {string} category
-//  * @returns {Promise}
-//  */
-// export const editCategory = (category) => {
-//     return new Promise((resolve, reject) => {
-//         try {
-//             let data = JSON.parse(localStorage.getItem(categories));
-//
-//             data = data.map((elem) => (
-//                 elem.id === category.id
-//                     ? category
-//                     : elem
-//             ));
-//             localStorage.setItem(categories, JSON.stringify(data));
-//
-//             setTimeout(() => {
-//                 resolve(category);
-//             }, DELAY);
-//         } catch (error) {
-//             reject(error);
-//         }
-//     })
-// };
-//
+/**
+ * Editing expense in collection of expenses
+ * @param {string} expense
+ * @returns {Promise}
+ */
+export const editExpense = (expense) => {
+    return new Promise((resolve, reject) => {
+        try {
+            let data = JSON.parse(localStorage.getItem(expenses));
+
+            data = data.map((elem) => (
+                elem.id === expense.id
+                    ? expense
+                    : elem
+            ));
+            localStorage.setItem(expenses, JSON.stringify(data));
+
+            setTimeout(() => {
+                resolve(expense);
+            }, DELAY);
+        } catch (error) {
+            reject(error);
+        }
+    })
+};
+
+/**
+ * Deleting expense from collection of expenses
+ * @param {string} expenseId
+ * @returns {Promise}
+ */
+export const deleteExpense = (expenseId) => {
+    return new Promise((resolve, reject) => {
+        try {
+            let data = JSON.parse(localStorage.getItem(expenses));
+
+            data = data.filter((elem) => elem.id !== expenseId);
+            localStorage.setItem(expenses, JSON.stringify(data));
+
+            setTimeout(() => {
+                resolve('success');
+            }, 0);
+        } catch (error) {
+            reject(error);
+        }
+    })
+};
+
+
 
 

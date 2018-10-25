@@ -8,7 +8,7 @@ export default reduxForm({
     // a unique name for the form
     form: 'CategoriesForm',
 })(props => {
-    const { onSubmit, handleSubmit } = props;
+    const { onSubmit, handleSubmit, isEdit } = props;
 
     return (
         <Form className="clear__fix" onSubmit={handleSubmit(onSubmit)}>
@@ -16,7 +16,7 @@ export default reduxForm({
                 label="Category name"
                 name="category"
             />
-            <Button className="pull_right" type="submit">{l('Create category')}</Button>
+            <Button className="pull_right" type="submit">{l(isEdit ? 'Edit category' : 'Create category')}</Button>
         </Form>
     );
 })

@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 
-import { ON_EDIT_CATEGORY } from 'constants/categories';
+import { ON_EDIT_EXPENSE } from 'constants/expenses';
 import ROUTES from 'routes';
-import { CategoriesForm } from 'components/Form';
-import withCategoryLoadingState from 'hoc/withCategoryLoadingState';
-import withCategories from 'hoc/withCategories';
+import { AddExpenseForm } from 'components/Form';
+
+import withExpenseAddingLoadState from 'hoc/withExpenseAddingLoadState';
+import withExpenses from 'hoc/withExpenses';
+
 import Modal from 'components/Modal';
 import Spinner from 'components/Spinner';
 
-class EditCategoryModal extends Component {
+class EditExpenseModal extends Component {
     onCloseModal = () => {
         const { history } = this.props;
 
-        history.push(ROUTES.categories.path);
+        history.push(ROUTES.expenses.path);
     }
 
     /**
-     * Saving addited category
-     * @param {string} category
+     * Saving addited expense
+     * @param {string} newExpense
      * @param {function} dispatch
      * @returns {null}
      */
-    onSubmit = ({ category }, dispatch) => {
+    onSubmit = (newExpense, dispatch) => {
         const {
             history,
             match: {
@@ -30,19 +32,20 @@ class EditCategoryModal extends Component {
                     id,
                 },
             },
-            categories: {
+            expenses: {
                 items,
             },
         } = this.props;
-        if (!category) return null;
 
-        const hasCategory = items.find((elem) => elem.id === id);
+        if (!Object.keys(newExpense).length) return null;
+
+        const expense = items.find((elem) => elem.id === id);
 
         dispatch({
-            type: ON_EDIT_CATEGORY,
-            category: {
-                ...hasCategory,
-                name: category,
+            type: ON_EDIT_EXPENSE,
+            expense: {
+                ...expense,
+                ...newExpense,
             },
             history,
         });
@@ -50,8 +53,8 @@ class EditCategoryModal extends Component {
 
     render() {
         const {
-            isAddingCategory,
-            categories: {
+            isAddingExpense,
+            expenses: {
                 items,
                 isLoading,
             },
@@ -62,22 +65,18 @@ class EditCategoryModal extends Component {
             },
         } = this.props;
 
-        const hasCategory = items.find((elem) => elem.id === id);
-
-        const category = {
-            category: hasCategory && hasCategory.name,
-        };
+        const expense = items.find((elem) => elem.id === id);
 
         return (
             <Modal
                 isOpen
                 onCloseModal={this.onCloseModal}
             >
-                <Spinner spin={isAddingCategory || isLoading}>
+                <Spinner spin={isAddingExpense || isLoading}>
                     {Boolean(items.length) && (
-                        <CategoriesForm
+                        <AddExpenseForm
                             onSubmit={this.onSubmit}
-                            initialValues={category}
+                            initialValues={expense}
                             isEdit
                         />
                     )}
@@ -88,6 +87,6 @@ class EditCategoryModal extends Component {
 };
 
 export default compose(
-    withCategoryLoadingState,
-    withCategories,
-)(EditCategoryModal);
+    withExpenses,
+    withExpenseAddingLoadState,
+)(EditExpenseModal);

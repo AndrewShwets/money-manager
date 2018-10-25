@@ -42,7 +42,8 @@ class App extends Component {
                         <Header/>
                         <Container className="app__content">
                             <Route {...ROUTES.home_page} />
-                            <Route {...ROUTES.expenses_summary} />
+                            <Route {...ROUTES.expenses} />
+                            <Route {...ROUTES.expenses.subRoute.edit_expense} />
                             <Route {...ROUTES.categories} />
                             <Route {...ROUTES.categories.subRoute.add_category} />
                             <Route {...ROUTES.categories.subRoute.edit_category} />

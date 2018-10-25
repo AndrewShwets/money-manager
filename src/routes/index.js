@@ -1,6 +1,7 @@
 import {
     AddCategoriesModal,
     EditCategoryModal,
+    EditExpenseModal,
 } from 'components/Modal';
 import withAsyncImport from 'hoc/withAsyncImport';
 import getContentRoutesPaths from 'utils/getContentRoutesPaths';
@@ -19,12 +20,20 @@ const ROUTES = {
         component: withAsyncImport(() => import(/* webpackChunkName: "HomePage" */ 'pages/Home')),
         exact: true,
     },
-    expenses_summary: {
+    expenses: {
         order: 0,
         content: true,
-        path: '/expenses-summary',
-        title: 'Expenses summary',
+        path: '/expenses',
+        title: 'Expenses',
         component: withAsyncImport(() => import(/* webpackChunkName: "ExpensesSummary" */ 'pages/ExpensesSummary')),
+        subRoute: {
+            edit_expense: {
+                content: true,
+                path: '/expenses/edit-expense/:id',
+                title: 'Edit expense',
+                component: EditExpenseModal,
+            },
+        },
     },
     expenses_add: {
         order: 1,

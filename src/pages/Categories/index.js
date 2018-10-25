@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import PageHeader from 'components/PageHeader';
 import Spinner from 'components/Spinner';
 import ROUTES from 'routes';
 import withCategories from 'hoc/withCategories';
@@ -24,9 +25,9 @@ class Categories extends Component {
                 spin={isLoading}
                 className="flex__item_justify"
             >
-                <header className="text_center">
-                    <h2>{l('Categories')}</h2>
-                </header>
+                <PageHeader>
+                    {l('Categories')}
+                </PageHeader>
                 <section className="flex">
                     <Link
                         to={ROUTES.categories.subRoute.add_category.path}

@@ -1,6 +1,5 @@
 import React from 'react';
 import withCategories from 'hoc/withCategories';
-
 import Select from '../Select';
 
 const SelectWithCategories = (props) => {
@@ -9,7 +8,9 @@ const SelectWithCategories = (props) => {
         categories: {
             items,
             isLoading,
-        }
+        },
+        error,
+        onChange,
     } = props;
 
     return (
@@ -20,6 +21,8 @@ const SelectWithCategories = (props) => {
             items={items}
             isLoading={isLoading}
             name={name}
+            error={error}
+            onChange={onChange}
         />
     )
 };
