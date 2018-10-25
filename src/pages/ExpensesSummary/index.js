@@ -13,7 +13,6 @@ import l from 'utils/translate';
 import Expense from './components/Expense';
 
 const FormDecorator = FormGroup('sumExpenses');
-
 const { shape, arrayOf, bool, string, func } = PropTypes;
 
 class ExpensesSummary extends Component {
