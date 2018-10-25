@@ -1,17 +1,17 @@
 .flex {
-  display: flex;
-  &__justifyContent {
-    &_center {
-      justify-content: center;
-    }
-  }
+   display: flex;
+   &__justifyContent {
+     &_center {
+       justify-content: center;
+     }
+   }
 
-  &__alignContent {
-    &_center {
-      align-items: center;
-    }
-  }
-}
+   &__alignContent {
+     &_center {
+       align-items: center;
+     }
+   }
+ }
 
 .flex__item {
   &_justify {

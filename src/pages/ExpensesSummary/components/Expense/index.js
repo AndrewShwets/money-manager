@@ -15,6 +15,7 @@ export default class Expense extends Component {
         onRemoveExpense: func.isRequired,
         id: string.isRequired,
         name: string.isRequired,
+        sum: string.isRequired,
     }
 
     onRemoveExpense = () => {
@@ -24,7 +25,7 @@ export default class Expense extends Component {
     }
 
     render() {
-        const { id, name, date, category } = this.props;
+        const { id, name, date, category, sum } = this.props;
 
         return (
             <tr className="expense">
@@ -33,6 +34,9 @@ export default class Expense extends Component {
                 </td>
                 <td className="text_center">
                     {category}
+                </td>
+                <td className="text_center">
+                    {sum}
                 </td>
                 <td className="expense__date text_center">
                     {date}

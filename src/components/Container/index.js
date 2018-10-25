@@ -4,22 +4,24 @@ import classNames from 'utils/classNames/index';
 
 import './index.scss';
 
-const { node, string } = PropTypes;
+const { node, string, bool } = PropTypes;
 
 const propTypes = {
     children: node.isRequired,
     className: string,
     containerClassName: string,
+    flex: bool,
 };
 
 const defaultProps = {
     className: '',
     containerClassName: '',
+    flex: true,
 };
 
-const Container = ({ children, className, containerClassName }) => (
-    <div className={classNames('flex flex__justifyContent_center', className)}>
-        <div className={classNames('flex container', containerClassName)}>
+const Container = ({ children, className, containerClassName, flex }) => (
+    <div className={classNames(flex ? 'flex flex__justifyContent_center' : '', className)}>
+        <div className={classNames('flex container margin_auto', containerClassName)}>
             {children}
         </div>
     </div>

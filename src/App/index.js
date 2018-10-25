@@ -40,7 +40,7 @@ class App extends Component {
                 {this.validateRoute(pathname) && (
                     <Fragment>
                         <Header/>
-                        <Container className="app__content">
+                        <Container className="app__content" flex={false}>
                             <Route {...ROUTES.home_page} />
                             <Route {...ROUTES.expenses} />
                             <Route {...ROUTES.expenses.subRoute.edit_expense} />

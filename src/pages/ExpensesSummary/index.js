@@ -82,7 +82,7 @@ class ExpensesSummary extends Component {
                 : true
         ));
 
-        console.log(this.state);
+        console.log(this.props);
 
         return (
             <Spinner
@@ -108,18 +108,20 @@ class ExpensesSummary extends Component {
                             <tr>
                                 <th>{l('Discription')}</th>
                                 <th>{l('Category')}</th>
+                                <th>{l('Sum')}</th>
                                 <th>{l('Date')}</th>
                                 <th>{l('Actions')}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredExpenses.map(({ id, expenseDate, description, categoryId }) => {
+                            {filteredExpenses.map(({ id, expenseDate, description, categoryId, expenseSum }) => {
                                 return (
                                     <Expense
                                         key={id}
                                         name={description}
                                         id={id}
                                         date={expenseDate}
+                                        sum={expenseSum}
                                         category={(
                                             normalizedCategories[categoryId]
                                                 ? normalizedCategories[categoryId].name

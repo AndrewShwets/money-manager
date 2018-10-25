@@ -33,9 +33,9 @@ const Home = (props) => {
                     <tr>
                         <th>{l('Category')}</th>
                         <th>{l('Sum')}</th>
-                        <th>{l('From')}</th>
-                        <th>{l('To')}</th>
-                        <th>{l('Look')}</th>
+                        <th className="text_left">{l('From')}</th>
+                        <th colSpan='2' className="text_left">{l('To')}</th>
+                        <th />
                     </tr>
                     </thead>
                     <tbody>
