@@ -82,6 +82,8 @@ class ExpensesSummary extends Component {
                 : true
         ));
 
+        console.log(this.state);
+
         return (
             <Spinner
                 spin={isLoadingCategories || isLoadingExpenses}
@@ -127,11 +129,11 @@ class ExpensesSummary extends Component {
                                     />
                                 )
                             })}
-                            {!Boolean(filteredExpenses.length) && (
-                                <Empty/>
-                            )}
                         </tbody>
                     </table>
+                    {!Boolean(filteredExpenses.length) && (
+                        <Empty/>
+                    )}
                 </section>
             </Spinner>
         );

@@ -15,14 +15,14 @@ export const CATEGORIES = [
 
 export const EXPENSES = [{
     "description": "Pizza",
-    "expenseSum": "213213",
+    "expenseSum": "21",
     "expenseDate": "2018-10-03",
     "categoryId": "166a7dfc4a0",
     "id": "166a868d3dd",
     "createdAt": "2018-10-24T23:28:54.237Z"
 }, {
     "description": "New carpet",
-    "expenseSum": "43432",
+    "expenseSum": "43",
     "expenseDate": "2018-10-03",
     "categoryId": "166a7e034ee",
     "id": "166a872093b",
