@@ -1,4 +1,4 @@
-import expenses from 'constants/expenses';
+import expenses from '@constants/expenses';
 
 const DELAY = 1000;
 

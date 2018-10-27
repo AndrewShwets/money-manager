@@ -1,4 +1,4 @@
-import * as types from 'constants/expenses';
+import * as types from '@constants/expenses';
 
 export const getExpenses = () => ({
     type: types.GET_EXPENSE,

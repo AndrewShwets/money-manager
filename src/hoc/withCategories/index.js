@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import { categories } from 'selectors';
-import { categories as categoriesActions } from 'actions';
+import { categories } from '@selectors';
+import { categories as categoriesActions } from '@actions';
 
 const { getCategories, deleteCategory } = categoriesActions;
 

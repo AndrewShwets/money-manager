@@ -3,7 +3,7 @@ import AddExpenseForm from 'components/Form/forms/AddExpenseForm';
 import l from 'utils/translate';
 import withExpenseAddingLoadState from 'hoc/withExpenseAddingLoadState';
 import Spinner from 'components/Spinner';
-import * as types from 'constants/expenses';
+import * as types from '@constants/expenses';
 
 class ExpensesAdd extends Component {
     constructor(props) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { expenses } from 'selectors';
-import { expenses as expensesActions } from 'actions';
+import { expenses } from '@selectors';
+import { expenses as expensesActions } from '@actions';
 
 export default (ComposedComponent, actions = null) => {
     class WithExpenses extends Component {

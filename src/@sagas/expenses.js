@@ -1,5 +1,5 @@
 import { takeLatest, put } from 'redux-saga/effects';
-import * as types from 'constants/expenses';
+import * as types from '@constants/expenses';
 
 import {
     addExpenses,

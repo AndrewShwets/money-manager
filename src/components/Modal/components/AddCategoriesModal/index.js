@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { ON_ADD_CATEGORY } from 'constants/categories';
+import { ON_ADD_CATEGORY } from '@constants/categories';
 import ROUTES from 'routes';
 import { CategoriesForm } from 'components/Form';
 import withCategoryLoadingState from 'hoc/withCategoryLoadingState';

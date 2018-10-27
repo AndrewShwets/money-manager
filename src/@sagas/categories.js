@@ -1,5 +1,5 @@
 import { takeLatest, put } from 'redux-saga/effects';
-import * as types from 'constants/categories';
+import * as types from '@constants/categories';
 import ROUTES from 'routes';
 
 import {

@@ -1,4 +1,4 @@
-import * as types from 'constants/categories';
+import * as types from '@constants/categories';
 
 export const getCategories = () => ({
     type: types.GET_CATEGORIES,

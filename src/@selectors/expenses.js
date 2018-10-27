@@ -1,5 +1,5 @@
 import { createStructuredSelector, createSelector } from 'reselect';
-import REDUCER from 'constants/expenses';
+import REDUCER from '@constants/expenses';
 
 const isAddingExpense = (state) => state[REDUCER].isAddingExpense;
 const items = (state) => state[REDUCER].items;

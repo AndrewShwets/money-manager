@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
-import * as types from 'constants/categories';
+import * as types from '@constants/expenses';
 
 const initialState = {
     items: [],
     isLoading: false,
-    isAddingCategory: false,
+    isAddingExpense: false,
 };
 
 export default combineReducers({
     items(state = initialState.items, action) {
         switch (action.type){
-            case types.GET_CATEGORIES_SUCCESS:
+            case types.GET_EXPENSES_SUCCESS:
                 return action.result;
             default:
                 return state;
@@ -18,21 +18,21 @@ export default combineReducers({
     },
     isLoading(state = initialState.isLoading, action) {
         switch (action.type){
-            case types.GET_CATEGORIES_REQUEST:
+            case types.GET_EXPENSES_REQUEST:
                 return true;
-            case types.GET_CATEGORIES_SUCCESS:
-            case types.GET_CATEGORIES_FAILURE:
+            case types.GET_EXPENSES_SUCCESS:
+            case types.GET_EXPENSES_FAILURE:
                 return false;
             default:
                 return state;
         }
     },
-    isAddingCategory(state = initialState.isAddingCategory, action) {
+    isAddingExpense(state = initialState.isAddingExpense, action) {
         switch (action.type){
-            case types.ADD_CATEGORY_REQUEST:
+            case types.ADD_EXPENSE_REQUEST:
                 return true;
-            case types.ADD_CATEGORY_SUCCESS:
-            case types.ADD_CATEGORY_FAILURE:
+            case types.ADD_EXPENSE_SUCCESS:
+            case types.ADD_EXPENSE_FAILURE:
                 return false;
             default:
                 return state;

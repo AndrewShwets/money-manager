@@ -1,5 +1,5 @@
 import { createStructuredSelector, createSelector } from 'reselect';
-import REDUCER from 'constants/categories';
+import REDUCER from '@constants/categories';
 
 const isAddingCategory = (state) => state[REDUCER].isAddingCategory;
 const items = (state) => state[REDUCER].items;

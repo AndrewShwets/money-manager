@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { generatePath } from 'react-router';
 import { compose } from 'redux';
 
-import { ON_EDIT_EXPENSE } from 'constants/expenses';
+import { ON_EDIT_EXPENSE } from '@constants/expenses';
 import { AddExpenseForm } from 'components/Form';
 import withExpenseAddingLoadState from 'hoc/withExpenseAddingLoadState';
 import withExpenses from 'hoc/withExpenses';

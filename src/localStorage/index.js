@@ -1,5 +1,5 @@
-import categories from 'constants/categories';
-import expenses from 'constants/expenses';
+import categories from '@constants/categories';
+import expenses from '@constants/expenses';
 import { CATEGORIES, EXPENSES } from './bootsrtap';
 
 const initAppLocalStorage = () => {
