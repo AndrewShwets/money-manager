@@ -89,13 +89,14 @@ class ExpensesSummary extends Component {
             })
         }, {});
 
+        // If the route is made by category we will filter then
+        const routedCategory = categories.find((elem) => elem.id === categoryRouteId);
+
         const filteredExpenses = expenses.filter((expense) => (
-            categoryRouteId && categoryRouteId !== 'edit-expense'
+            categoryRouteId && routedCategory
                 ? expense.categoryId === categoryRouteId
                 : true
         ));
-
-        console.log(this.props);
 
         return (
             <Spinner

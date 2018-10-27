@@ -1,19 +1,35 @@
 import React, { Component } from 'react';
+import { generatePath } from 'react-router';
 import { compose } from 'redux';
+
 import { ON_EDIT_EXPENSE } from 'constants/expenses';
 import { AddExpenseForm } from 'components/Form';
-
 import withExpenseAddingLoadState from 'hoc/withExpenseAddingLoadState';
 import withExpenses from 'hoc/withExpenses';
-
+import ROUTES from 'routes';
 import Modal from 'components/Modal';
 import Spinner from 'components/Spinner';
 
 class EditExpenseModal extends Component {
     onCloseModal = () => {
-        const { history } = this.props;
+        const {
+            history,
+            match: {
+                params: {
+                    id,
+                },
+            }
+        } = this.props;
 
-        history.goBack();
+        // If we has came from filtred expenses by structure
+        if (id) {
+            history.push(generatePath(ROUTES.expenses.path, {
+                id,
+            }));
+        } else {
+            // Otherwise routing to root expense page
+            history.push(generatePath(ROUTES.expenses.path));
+        }
     }
 
     /**
