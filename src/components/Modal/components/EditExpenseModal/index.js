@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
-
 import { ON_EDIT_EXPENSE } from 'constants/expenses';
-import ROUTES from 'routes';
 import { AddExpenseForm } from 'components/Form';
 
 import withExpenseAddingLoadState from 'hoc/withExpenseAddingLoadState';
@@ -15,7 +13,7 @@ class EditExpenseModal extends Component {
     onCloseModal = () => {
         const { history } = this.props;
 
-        history.push(ROUTES.expenses.path);
+        history.goBack();
     }
 
     /**
@@ -29,7 +27,7 @@ class EditExpenseModal extends Component {
             history,
             match: {
                 params: {
-                    id,
+                    expense: id,
                 },
             },
             expenses: {
@@ -60,7 +58,7 @@ class EditExpenseModal extends Component {
             },
             match: {
                 params: {
-                    id,
+                    expense: id,
                 },
             },
         } = this.props;

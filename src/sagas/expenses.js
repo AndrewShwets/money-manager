@@ -1,6 +1,5 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import * as types from 'constants/expenses';
-import ROUTES from 'routes';
 
 import {
     addExpenses,
@@ -41,7 +40,8 @@ function* editExpenseSaga(action) {
         yield editExpense(expense);
         yield put({ type: types.ADD_EXPENSE_SUCCESS });
 
-        yield history.push(ROUTES.expenses.path);
+        // To previous state of page filtration
+        yield history.goBack();
     } catch (error) {
         yield put({ type: types.ADD_EXPENSE_FAILURE });
     }

@@ -23,13 +23,19 @@ const ROUTES = {
     expenses: {
         order: 0,
         content: true,
-        path: '/expenses',
+        path: '/expenses/:id?',
         title: 'Expenses',
         component: withAsyncImport(() => import(/* webpackChunkName: "ExpensesSummary" */ 'pages/ExpensesSummary')),
         subRoute: {
             edit_expense: {
                 content: true,
-                path: '/expenses/edit-expense/:id',
+                path: '/expenses/edit-expense/:expense',
+                title: 'Edit expense',
+                component: EditExpenseModal,
+            },
+            edit_expense_filtered: {
+                content: true,
+                path: '/expenses/:id/edit-expense/:expense',
                 title: 'Edit expense',
                 component: EditExpenseModal,
             },

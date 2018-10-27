@@ -8,7 +8,7 @@ import ROUTES from 'routes';
 import l from 'utils/translate';
 import './index.scss';
 
-const { string, func } = PropTypes;
+const { string, func, bool } = PropTypes;
 
 export default class Expense extends Component {
     static propTypes = {
@@ -16,6 +16,8 @@ export default class Expense extends Component {
         id: string.isRequired,
         name: string.isRequired,
         sum: string.isRequired,
+        categoryId: string,
+        isFiltered: bool,
     }
 
     onRemoveExpense = () => {
@@ -25,7 +27,18 @@ export default class Expense extends Component {
     }
 
     render() {
-        const { id, name, date, category, sum } = this.props;
+        const { id, name, date, category, sum, categoryId, isFiltered } = this.props;
+
+        const generatedLink = (
+            isFiltered
+                ? generatePath(ROUTES.expenses.subRoute.edit_expense_filtered.path, {
+                    expense: id,
+                    id: categoryId,
+                })
+                : generatePath(ROUTES.expenses.subRoute.edit_expense.path, {
+                    expense: id,
+                })
+        );
 
         return (
             <tr className="expense">
@@ -49,9 +62,7 @@ export default class Expense extends Component {
                         {l('Delete')}
                     </Button>
                     <Link
-                        to={generatePath(ROUTES.expenses.subRoute.edit_expense.path, {
-                            id,
-                        })}
+                        to={generatedLink}
                         className="pull_right btn btn_info"
                     >
                         {l('Edit')}

@@ -12,7 +12,7 @@ const FormGroup = (name) => {
     return (
         reduxForm({
             // a unique name for the form
-            form: 'CategoriesForm',
+            form: name,
         })(props => {
             const { onSubmit, handleSubmit, children } = props;
 

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
+import { generatePath } from 'react-router';
 
+import ROUTES from 'routes';
 import PageHeader from 'components/PageHeader';
 import FormGroup from 'components/Form';
 import SelectWithCategories from 'components/Form/components/SelectWithCategories';
@@ -39,16 +41,25 @@ class ExpensesSummary extends Component {
         }).isRequired,
     }
 
-    state = {
-        selected: '',
-    }
-
     onSubmit = () => {
 
     }
 
-    onChange = ({ target: { value: selected } }) => {
-        this.setState({ selected });
+    /**
+     * Changes route for filter purposes
+     * @param id
+     */
+    onChange = ({ target: { value: id } }) => {
+        // generatePath without id throws an error
+        const path = (
+            id
+                ? generatePath(ROUTES.expenses.path, {
+                    id,
+                })
+                : generatePath(ROUTES.expenses.path)
+        );
+
+        this.props.history.push(path);
     }
 
     render() {
@@ -62,9 +73,12 @@ class ExpensesSummary extends Component {
                 items: categories,
                 isLoading: isLoadingCategories,
             },
+            match: {
+                params: {
+                    id: categoryRouteId,
+                },
+            }
         } = this.props;
-
-        const { selected } = this.state;
 
         const normalizedCategories = categories.reduce((norm, category) => {
             return ({
@@ -76,8 +90,8 @@ class ExpensesSummary extends Component {
         }, {});
 
         const filteredExpenses = expenses.filter((expense) => (
-            selected
-                ? expense.categoryId === selected
+            categoryRouteId && categoryRouteId !== 'edit-expense'
+                ? expense.categoryId === categoryRouteId
                 : true
         ));
 
@@ -94,6 +108,9 @@ class ExpensesSummary extends Component {
                 <section className="section col-6">
                     <FormDecorator
                         onSubmit={this.onSubmit}
+                        initialValues={{
+                            expensesFilterSelect: categoryRouteId,
+                        }}
                     >
                         <SelectWithCategories
                             onChange={this.onChange}
@@ -121,6 +138,8 @@ class ExpensesSummary extends Component {
                                         id={id}
                                         date={expenseDate}
                                         sum={expenseSum}
+                                        categoryId={categoryId}
+                                        isFiltered={Boolean(categoryRouteId)}
                                         category={(
                                             normalizedCategories[categoryId]
                                                 ? normalizedCategories[categoryId].name

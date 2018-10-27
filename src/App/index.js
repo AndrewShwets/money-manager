@@ -44,6 +44,7 @@ class App extends Component {
                             <Route {...ROUTES.home_page} />
                             <Route {...ROUTES.expenses} />
                             <Route {...ROUTES.expenses.subRoute.edit_expense} />
+                            <Route {...ROUTES.expenses.subRoute.edit_expense_filtered} />
                             <Route {...ROUTES.categories} />
                             <Route {...ROUTES.categories.subRoute.add_category} />
                             <Route {...ROUTES.categories.subRoute.edit_category} />

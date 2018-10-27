@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom'
+import { generatePath } from 'react-router';
 
-import withRouteProps from 'hoc/withRouteProps/index';
-import classNames from 'utils/classNames/index';
+import withRouteProps from 'hoc/withRouteProps';
+import classNames from 'utils/classNames';
+import getActiveMenuRoute from 'utils/getActiveMenuRoute';
 import l from 'utils/translate/index';
 import { NAVIGATION_ROUTES } from 'routes';
 
@@ -49,31 +51,13 @@ class Navigation extends PureComponent {
     }
 
     /**
-     * Gets active menu item by route
-     * @param {object} items - menu links
-     * @param {string} pathname - app path name
-     */
-    getActiveMenuRoute = (items, pathname) => {
-        let path;
-
-        Object.keys(items).forEach((route) => {
-            if(pathname === '/' && route === pathname) {
-                path = '/';
-            } else if (~pathname.indexOf(route)){
-                path = route;
-            }
-        })
-
-        return path;
-    }
-
-    /**
      * Calculates nav coordinates and selected menu item,
      * for updating underline styles
      */
     updateMenuStyle = () => {
         const { location: { pathname } } = this.props;
-        const path = this.getActiveMenuRoute(this._menuItems, pathname);
+
+        const path = getActiveMenuRoute(this._menuItems, pathname);
 
         if (path) {
             const navCoord = getElemCoord(this._nav);
@@ -100,22 +84,27 @@ class Navigation extends PureComponent {
                     ref={(nav) => this._nav = nav}
                     className="flex nav__list"
                 >
-                    {NAVIGATION_ROUTES.map(({ title, path, exac }, index) => (
-                        <li
-                            ref={(item) => (
-                                !Boolean(this._menuItems[path]) && (this._menuItems[path] = item)
-                            )}
-                            className="nav__list-item"
-                            key={path}
-                        >
-                            <NavLink
-                                to={path}
-                                exac={exac}
+                    {NAVIGATION_ROUTES.map(({ title, path, exac }, index) => {
+                        const generatedPath = generatePath(path);
+
+                        return (
+                            <li
+                                ref={(item) => (
+                                    !Boolean(this._menuItems[generatedPath]) &&
+                                    (this._menuItems[generatedPath] = item)
+                                )}
+                                className="nav__list-item"
+                                key={path}
                             >
-                                {l(title)}
-                            </NavLink>
-                        </li>
-                    ))}
+                                <NavLink
+                                    to={generatedPath}
+                                    exac={exac}
+                                >
+                                    {l(title)}
+                                </NavLink>
+                            </li>
+                        );
+                    })}
                     <li
                         className="nav__underline"
                         style={menuItemStyle}

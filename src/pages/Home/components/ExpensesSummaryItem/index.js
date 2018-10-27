@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { generatePath } from 'react-router';
 
 import l from 'utils/translate';
 import ROUTES from 'routes';
@@ -42,7 +43,9 @@ export default class ExpensesSummaryItem extends Component {
                 <td className="expense__link">
                     <Link
                         to={{
-                            pathname: ROUTES.expenses.path,
+                            pathname: generatePath(ROUTES.expenses.path, {
+                                id,
+                            }),
                             state: {
                                 category: id,
                             }
