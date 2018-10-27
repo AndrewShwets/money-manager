@@ -1,14 +1,9 @@
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { reducer as formReducer } from 'redux-form';
+
 import CONFIGS from 'configs';
 import rootReducer from 'reducers';
 import rootSagas from 'sagas';
-
-const reducers = combineReducers({
-    form: formReducer,
-    rootReducer,
-})
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -29,7 +24,7 @@ if (CONFIGS.IS_DEV) {
 }
 
 const store = createStore(
-    reducers,
+    rootReducer,
     composeEnhancers(
         applyMiddleware(...middlewares),
     ),

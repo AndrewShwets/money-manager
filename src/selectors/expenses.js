@@ -1,9 +1,9 @@
 import { createStructuredSelector, createSelector } from 'reselect';
 import REDUCER from 'constants/expenses';
 
-const isAddingExpense = (state) => state.rootReducer[REDUCER].isAddingExpense;
-const items = (state) => state.rootReducer[REDUCER].items;
-const isLoading = (state) => state.rootReducer[REDUCER].isLoading;
+const isAddingExpense = (state) => state[REDUCER].isAddingExpense;
+const items = (state) => state[REDUCER].items;
+const isLoading = (state) => state[REDUCER].isLoading;
 
 // Expense adding state
 const addingExpenseState = createStructuredSelector({

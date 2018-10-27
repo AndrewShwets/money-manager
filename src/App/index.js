@@ -34,6 +34,7 @@ class App extends Component {
 
     render() {
         const { location: { pathname } } = this.props;
+
         // Doesn't render content when route without content property
         return (
             <Switch>

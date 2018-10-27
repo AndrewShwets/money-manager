@@ -1,9 +1,9 @@
 import { createStructuredSelector, createSelector } from 'reselect';
 import REDUCER from 'constants/categories';
 
-const isAddingCategory = (state) => state.rootReducer[REDUCER].isAddingCategory;
-const items = (state) => state.rootReducer[REDUCER].items;
-const isLoading = (state) => state.rootReducer[REDUCER].isLoading;
+const isAddingCategory = (state) => state[REDUCER].isAddingCategory;
+const items = (state) => state[REDUCER].items;
+const isLoading = (state) => state[REDUCER].isLoading;
 
 // Category adding state
 const addingCategoryState = createStructuredSelector({
