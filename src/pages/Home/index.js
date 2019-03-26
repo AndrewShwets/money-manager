@@ -4,11 +4,19 @@ import { compose } from 'redux';
 import withCategories from 'hoc/withCategories';
 import withExpenses from 'hoc/withExpenses';
 import l from 'utils/translate';
+import apiCall from 'utils/apiCall';
 import PageHeader from 'components/PageHeader';
 import Spinner from 'components/Spinner';
+import Button from 'components/Button';
 
 import withChartData from './hoc/withChartData';
 import ExpensesSummaryItem from './components/ExpensesSummaryItem';
+
+const getUsers = async () => {
+    const users = await apiCall({ url: 'users' });
+
+    console.log('users', users);
+}
 
 const Home = (props) => {
     const {
@@ -26,6 +34,7 @@ const Home = (props) => {
         >
             <PageHeader>
                 {l('NomePage')}
+                <Button onClick={getUsers}>Get users</Button>
             </PageHeader>
             <section className="section">
                 <table>
